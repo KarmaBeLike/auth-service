@@ -2,7 +2,6 @@ package router
 
 import (
 	"mobidev/internal/handlers"
-
 	"net/http"
 )
 
@@ -14,6 +13,7 @@ func NewRouter() *http.ServeMux {
 
 	mux.HandleFunc("POST /login", handlers.AuthorizationHandler)
 	mux.HandleFunc("POST /register", handlers.RegistrationHandler)
+	mux.HandleFunc("PUT /update-profile", handlers.ProfileUpdater)
 
 	return mux
 }
