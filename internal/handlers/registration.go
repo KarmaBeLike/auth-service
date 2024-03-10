@@ -1,17 +1,16 @@
 package handlers
 
 import (
+	"encoding/json"
+	"fmt"
 	"mobidev/internal/models"
 	"mobidev/internal/storage"
+	"net/http"
+	"time"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
-
-	"encoding/json"
-	"fmt"
-	"net/http"
-	"time"
 )
 
 const HASHING_COST = 12
@@ -25,7 +24,7 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 
 		response := models.Response{Message: msg}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(400)
+		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(response)
 		return
 	}
@@ -35,7 +34,7 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 
 		response := models.Response{Message: msg}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(400)
+		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(response)
 		return
 	}
@@ -45,7 +44,7 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 
 		response := models.Response{Message: msg}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(409)
+		w.WriteHeader(http.StatusConflict)
 		json.NewEncoder(w).Encode(response)
 		return
 	}
@@ -56,7 +55,7 @@ func RegistrationHandler(w http.ResponseWriter, r *http.Request) {
 
 		response := models.Response{Message: msg}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(500)
+		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(response)
 		return
 	}

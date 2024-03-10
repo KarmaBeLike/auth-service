@@ -1,11 +1,10 @@
 package handlers
 
 import (
-	"mobidev/internal/models"
-	"mobidev/internal/storage"
-
 	"encoding/json"
 	"fmt"
+	"mobidev/internal/models"
+	"mobidev/internal/storage"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
@@ -21,7 +20,7 @@ func AuthorizationHandler(w http.ResponseWriter, r *http.Request) {
 
 		response := models.Response{Message: msg}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(400)
+		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(response)
 		return
 	}
@@ -32,7 +31,7 @@ func AuthorizationHandler(w http.ResponseWriter, r *http.Request) {
 
 		response := models.Response{Message: msg}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(400)
+		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(response)
 		return
 	}
@@ -44,7 +43,7 @@ func AuthorizationHandler(w http.ResponseWriter, r *http.Request) {
 
 		response := models.Response{Message: msg}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(400)
+		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(response)
 		return
 	}
@@ -55,7 +54,7 @@ func AuthorizationHandler(w http.ResponseWriter, r *http.Request) {
 
 		response := models.Response{Message: msg}
 		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(400)
+		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(response)
 		return
 	}
@@ -82,5 +81,4 @@ func AuthorizationHandler(w http.ResponseWriter, r *http.Request) {
 	response := models.Response{Message: msg}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
-
 }
